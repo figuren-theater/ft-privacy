@@ -3,7 +3,7 @@
     "description": "Privacy first! And this is the code that does it. Curated for the WordPress Multisite figuren.theater",
     "type": "wordpress-muplugin",
     "license": "GPL-3",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "extra": {
         "installer-name": "Privacy"
     },
@@ -39,6 +39,6 @@
         "composer/installers": "~1",
         "wpackagist-plugin/embed-privacy": "1.4.8",
         "wpackagist-plugin/koko-analytics": "1.0.35",
-        "wpackagist-plugin/surbma-gdpr-multisite-privacy": "2.0",
+        "wpackagist-plugin/surbma-gdpr-multisite-privacy": "2.0"
     }
 }
