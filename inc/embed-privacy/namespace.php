@@ -1,11 +1,11 @@
 <?php
 /**
- * Figuren_Theater Admin_UI Embed_Privacy.
+ * Figuren_Theater Privacy Embed_Privacy.
  *
- * @package figuren-theater/admin_ui/embed_privacy
+ * @package figuren-theater/privacy/embed_privacy
  */
 
-namespace Figuren_Theater\Admin_UI\Embed_Privacy;
+namespace Figuren_Theater\Privacy\Embed_Privacy;
 
 use Figuren_Theater\Options;
 
@@ -20,9 +20,9 @@ use function remove_submenu_page;
  * Register module.
 function register() {
 	Altis\register_module(
-		'admin_ui',
+		'privacy',
 		DIRECTORY,
-		'Admin_UI',
+		'Privacy',
 		[
 			'defaults' => [
 				'enabled' => true,

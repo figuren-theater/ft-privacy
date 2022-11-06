@@ -1,11 +1,11 @@
 <?php
 /**
- * Figuren_Theater Admin_UI Koko_Analytics.
+ * Figuren_Theater Privacy Koko_Analytics.
  *
- * @package figuren-theater/admin_ui/koko_analytics
+ * @package figuren-theater/privacy/koko_analytics
  */
 
-namespace Figuren_Theater\Admin_UI\Koko_Analytics;
+namespace Figuren_Theater\Privacy\Koko_Analytics;
 
 use Figuren_Theater\Options;
 
@@ -19,9 +19,9 @@ use function remove_submenu_page;
  * Register module.
 function register() {
 	Altis\register_module(
-		'admin_ui',
+		'privacy',
 		DIRECTORY,
-		'Admin_UI',
+		'Privacy',
 		[
 			'defaults' => [
 				'enabled' => true,
@@ -48,7 +48,7 @@ function load_plugin() {
 
 	if ( ! $config['koko-analytics'] )
 		return; // early
-	
+
 	require_once FT_VENDOR_DIR . '/' . BASENAME;
 
 	add_action( 'admin_menu', __NAMESPACE__ . '\\change_menu_title', 20 );
