@@ -2,19 +2,25 @@
     "name": "figuren-theater/ft-privacy",
     "description": "Privacy first! And this is the code that does it. Curated for the WordPress Multisite figuren.theater",
     "type": "wordpress-muplugin",
-    "license": "GPL-3",
-    "version": "1.0.1",
+    "license": "GPL-2",
+    "version": "1.0.2",
     "extra": {
         "installer-name": "Privacy"
     },
     "autoload": {
-        "psr-4": {
-            "Figuren_Theater\\Privacy\\": "src/"
-        }
+        "files": [
+            "inc/koko-analytics/namespace.php",
+            "inc/embed-privacy/namespace.php",
+            "inc/namespace.php"
+        ],
+        "classmap": [
+            "inc/"
+        ]
     },
     "authors": [
         {
-            "name": "Carsten Bach"
+            "name": "figuren.theater",
+            "email": "info@figuren.theater"
         }
     ],
     "prefer-stable": true,
@@ -22,11 +28,11 @@
     "repositories": [
         {
             "type": "git",
-            "url": "https://github.com/figuren-theater/ft-core"
+            "url" : "https://github.com/figuren-theater/ft-core"
         },
         {
             "type": "composer",
-            "url": "https://packagist.org"
+            "url" : "https://packagist.org"
         },
         {
             "type": "composer",
