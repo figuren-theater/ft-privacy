@@ -7,6 +7,8 @@
 
 namespace Figuren_Theater\Privacy\Koko_Analytics;
 
+use Figuren_Theater;
+
 use Figuren_Theater\Options;
 
 use function add_action;
@@ -15,23 +17,8 @@ use function get_role;
 use function remove_all_actions;
 use function remove_submenu_page;
 
-/**
- * Register module.
-function register() {
-	Altis\register_module(
-		'privacy',
-		DIRECTORY,
-		'Privacy',
-		[
-			'defaults' => [
-				'enabled' => true,
-			],
-		],
-		__NAMESPACE__ . '\\bootstrap'
-	);
-}
- */
 const BASENAME = 'koko-analytics/koko-analytics.php';
+const PLUGINPATH = FT_VENDOR_DIR . '/wpackagist-plugin/' . BASENAME;
 
 /**
  * Bootstrap module, when enabled.
@@ -44,12 +31,12 @@ function bootstrap() {
 }
 
 function load_plugin() {
-	$config = Altis\get_config()['modules']['privacy'];
 
+	$config = Figuren_Theater\get_config()['modules']['privacy'];
 	if ( ! $config['koko-analytics'] )
 		return; // early
 
-	require_once FT_VENDOR_DIR . '/' . BASENAME;
+	require_once PLUGINPATH;
 
 	add_action( 'admin_menu', __NAMESPACE__ . '\\change_menu_title', 20 );
 

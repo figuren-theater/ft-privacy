@@ -4,9 +4,6 @@
     "type": "wordpress-muplugin",
     "license": "GPL-2",
     "version": "1.0.3",
-    "extra": {
-        "installer-name": "Privacy"
-    },
     "autoload": {
         "files": [
             "inc/koko-analytics/namespace.php",
@@ -23,8 +20,6 @@
             "email": "info@figuren.theater"
         }
     ],
-    "prefer-stable": true,
-    "minimum-stability": "dev",
     "repositories": [
         {
             "type": "git",
@@ -41,10 +36,19 @@
     ],
     "require": {
         "php": ">=7.1",
-        "figuren-theater/ft-core": "^1",
+        "figuren-theater/ft-core": "dev-master",
         "composer/installers": "~1",
         "wpackagist-plugin/embed-privacy": "1.4.8",
         "wpackagist-plugin/koko-analytics": "1.0.35",
         "wpackagist-plugin/surbma-gdpr-multisite-privacy": "2.0"
+    },
+    "extra": {
+        "altis": {
+            "install-overrides": [
+                "wpackagist-plugin/embed-privacy",
+                "wpackagist-plugin/koko-analytics",
+                "wpackagist-plugin/surbma-gdpr-multisite-privacy"
+            ]
+        }
     }
 }

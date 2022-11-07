@@ -15,7 +15,7 @@ use Altis;
 function register() {
 	$default_settings = [
 		'enabled' => true, // needs to be set
-		'koko-analytics' => true,
+		'koko-analytics' => false, // disabled for the planet
 	];
 	$options = [
 		'defaults' => $default_settings,

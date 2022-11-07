@@ -16,23 +16,8 @@ use function add_filter;
 use function remove_filter;
 use function remove_submenu_page;
 
-/**
- * Register module.
-function register() {
-	Altis\register_module(
-		'privacy',
-		DIRECTORY,
-		'Privacy',
-		[
-			'defaults' => [
-				'enabled' => true,
-			],
-		],
-		__NAMESPACE__ . '\\bootstrap'
-	);
-}
- */
 const BASENAME = 'embed-privacy/embed-privacy.php';
+const PLUGINPATH = FT_VENDOR_DIR . '/wpackagist-plugin/' . BASENAME;
 
 /**
  * Bootstrap module, when enabled.
@@ -41,13 +26,14 @@ function bootstrap() {
 
 	add_action( 'Figuren_Theater\loaded', __NAMESPACE__ . '\\filter_options', 11 );
 	
-	add_action( 'plugins_loaded', __NAMESPACE__ . '\\load_plugin' );
-	
+	add_action( 'plugins_loaded', __NAMESPACE__ . '\\load_plugin', 0 );
 }
 
 function load_plugin() {
 
-	require_once FT_VENDOR_DIR . '/' . BASENAME;
+	if ( ! defined( 'EPI_EMBED_PRIVACY_BASE' ) ) define( 'EPI_EMBED_PRIVACY_BASE', FT_VENDOR_DIR . '/wpackagist-plugin/embed-privacy/' );
+
+	require_once PLUGINPATH;
 	
 	// Remove plugins menu
 	add_action( 'admin_menu', __NAMESPACE__ . '\\remove_menu', 11 );
@@ -64,48 +50,12 @@ function load_plugin() {
 	// if we set the shortcode attr 'subline' to empty values, 
 	// empty html-tags are still rendered
 	add_filter( 'embed_privacy_opt_out_subline', '__return_false' );
-
 }
 
 
 function filter_options() {
-		
-		$_options = [
-
-			// BEWARE, this is not the plugin-version,
-			// but a $version var in class-migration.php,
-			// that could be slightly different from the main plugin version.
-			// 
-			// set to sth. higher than 1.2.0, where 30+ 'epi_embed' posts are created
-			// 'embed_privacy_migrate_version' => '1.4.0', // plugin version 1.4.4 
-			
-			// only used for custom triggered migration-routine, 
-			// normal calls onto this option 
-			// are prevented by the falsish state 
-			// of  'is_migrating 
-			'embed_privacy_migrate_version' => 'initial', 
-
-			// prevents this from beeing added on every admin_init-call
-			// THIS PREVENTS 5 DB queries
-			// and reduces admin load-time from 0.20 s to 0.02s
-			// because of forbidden "read AND write"
-			// 
-			// but this needs to have the initatial setup done 
-			// on site setup
-			'embed_privacy_is_migrating' => 1, // !!!!
-
-			//
-			'embed_privacy_javascript_detection' => 'yes',
-			'embed_privacy_local_tweets' => 'yes',
-			'embed_privacy_preserve_data_on_uninstall' => '', // empty string by default
-		];
-
-		new Options\Factory( 
-			$_options, 
-			'Figuren_Theater\Options\Option', 
-			BASENAME, 
-		);
 	
+	$_options = [
 
 		// BEWARE, this is not the plugin-version,
 		// but a $version var in class-migration.php,
@@ -118,15 +68,48 @@ function filter_options() {
 		// normal calls onto this option 
 		// are prevented by the falsish state 
 		// of  'is_migrating 
-		new Options\Option(
-			'embed_privacy_migrate_version',
-			'initial',
-			BASENAME,
-			'site_option'
-		);
+		'embed_privacy_migrate_version' => 'initial', 
+
+		// prevents this from beeing added on every admin_init-call
+		// THIS PREVENTS 5 DB queries
+		// and reduces admin load-time from 0.20 s to 0.02s
+		// because of forbidden "read AND write"
+		// 
+		// but this needs to have the initatial setup done 
+		// on site setup
+		'embed_privacy_is_migrating' => 1, // !!!!
+
+		//
+		'embed_privacy_javascript_detection' => 'yes',
+		'embed_privacy_local_tweets' => 'yes',
+		'embed_privacy_preserve_data_on_uninstall' => '', // empty string by default
+	];
+
+	new Options\Factory( 
+		$_options, 
+		'Figuren_Theater\Options\Option', 
+		BASENAME, 
+	);
 
 
-	}
+	// BEWARE, this is not the plugin-version,
+	// but a $version var in class-migration.php,
+	// that could be slightly different from the main plugin version.
+	// 
+	// set to sth. higher than 1.2.0, where 30+ 'epi_embed' posts are created
+	// 'embed_privacy_migrate_version' => '1.4.0', // plugin version 1.4.4 
+	
+	// only used for custom triggered migration-routine, 
+	// normal calls onto this option 
+	// are prevented by the falsish state 
+	// of  'is_migrating 
+	new Options\Option(
+		'embed_privacy_migrate_version',
+		'initial',
+		BASENAME,
+		'site_option'
+	);
+}
 
 function remove_menu() : void {
 	remove_submenu_page( 'options-general.php', 'embed_privacy' );
