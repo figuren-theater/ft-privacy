@@ -3,7 +3,7 @@
     "description": "Privacy first! And this is the code that does it. Curated for the WordPress Multisite figuren.theater",
     "type": "wordpress-muplugin",
     "license": "GPL-2",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "autoload": {
         "files": [
             "inc/koko-analytics/namespace.php",
