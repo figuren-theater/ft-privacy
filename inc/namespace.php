@@ -7,12 +7,13 @@
 
 namespace Figuren_Theater\Privacy;
 
-use Altis;
+use function Altis\register_module;
 
 /**
  * Register module.
  */
 function register() {
+
 	$default_settings = [
 		'enabled' => true, // needs to be set
 		'koko-analytics' => false, // disabled for the planet
@@ -37,4 +38,5 @@ function bootstrap() {
 
 	Embed_Privacy\bootstrap();
 	Koko_Analytics\bootstrap();
+	Surbma_GDPR_Multisite_Privacy\bootstrap();
 }

@@ -7,9 +7,11 @@
 
 namespace Figuren_Theater\Privacy\Koko_Analytics;
 
-use Figuren_Theater;
+use FT_VENDOR_DIR;
 
 use Figuren_Theater\Options;
+
+use function Figuren_Theater\get_config;
 
 use function add_action;
 use function add_filter;
@@ -17,7 +19,7 @@ use function get_role;
 use function remove_all_actions;
 use function remove_submenu_page;
 
-const BASENAME = 'koko-analytics/koko-analytics.php';
+const BASENAME   = 'koko-analytics/koko-analytics.php';
 const PLUGINPATH = FT_VENDOR_DIR . '/wpackagist-plugin/' . BASENAME;
 
 /**
