@@ -7,6 +7,7 @@
 
 namespace Figuren_Theater\Privacy;
 
+use Altis;
 use function Altis\register_module;
 
 /**
