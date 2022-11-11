@@ -2,8 +2,13 @@
     "name": "figuren-theater/ft-privacy",
     "description": "Privacy first! And this is the code that does it. Curated for the WordPress Multisite figuren.theater",
     "type": "wordpress-muplugin",
-    "license": "GPL-2",
-    "version": "1.0.5",
+    "license": "GPL-3.0-or-later",
+    "authors": [
+        {
+            "name": "figuren.theater",
+            "email": "info@figuren.theater"
+        }
+    ],
     "autoload": {
         "files": [
             "inc/embed-privacy/namespace.php",
@@ -15,12 +20,6 @@
             "inc/"
         ]
     },
-    "authors": [
-        {
-            "name": "figuren.theater",
-            "email": "info@figuren.theater"
-        }
-    ],
     "repositories": [
         {
             "type": "git",
