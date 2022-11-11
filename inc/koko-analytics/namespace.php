@@ -9,8 +9,8 @@ namespace Figuren_Theater\Privacy\Koko_Analytics;
 
 use FT_VENDOR_DIR;
 
+use Figuren_Theater;
 use Figuren_Theater\Options;
-
 use function Figuren_Theater\get_config;
 
 use function add_action;
