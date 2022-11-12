@@ -25,14 +25,14 @@ const PLUGINPATH = FT_VENDOR_DIR . '/wpackagist-plugin/' . BASENAME;
 /**
  * Bootstrap module, when enabled.
  */
-function bootstrap() {
+function bootstrap() : void {
 
 	add_action( 'Figuren_Theater\loaded', __NAMESPACE__ . '\\filter_options', 11 );
 	
 	add_action( 'plugins_loaded', __NAMESPACE__ . '\\load_plugin' );
 }
 
-function load_plugin() {
+function load_plugin() : void {
 
 	$config = Figuren_Theater\get_config()['modules']['privacy'];
 	if ( ! $config['koko-analytics'] )
@@ -48,7 +48,7 @@ function load_plugin() {
 }
 
 
-function filter_options() {
+function filter_options() : void {
 	
 	$_options = [
 		'use_cookie'              => 0,
@@ -70,26 +70,25 @@ function filter_options() {
 	);
 }
 
-function change_menu_title(){
+function change_menu_title() : void {
 	global $submenu;
 
 	// 
-	if (isset($submenu['index.php'][6][0]) && 'Analytics' === $submenu['index.php'][6][0])
-		$submenu['index.php'][6][0] = __('Zugriffe','figurentheater');
+	if ( isset( $submenu['index.php'][6][0] ) && 'Analytics' === $submenu['index.php'][6][0] )
+		$submenu['index.php'][6][0] = __( 'Zugriffe', 'figurentheater' );
 }
 
-function change_meta_box_title() {
+function change_meta_box_title() : void {
 
 	global $wp_meta_boxes;
 
-	$post_type  = 'dashboard'; // our screen->ID
-	$context    = 'side';
-	$priority   = 'high';
-	$id         = 'koko-analytics-dashboard-widget';
+	$post_type = 'dashboard'; // our screen->ID
+	$context   = 'side';
+	$priority  = 'high';
+	$id        = 'koko-analytics-dashboard-widget';
 
-	if (isset($wp_meta_boxes[$post_type][$context][$priority][$id]['title']))
-		$wp_meta_boxes[$post_type][$context][$priority][$id]['title'] = __('Usage statistics - GDPR compliant','figurentheater');
-
+	if ( isset( $wp_meta_boxes[ $post_type ][ $context ][ $priority ][ $id ]['title'] ) )
+		$wp_meta_boxes[ $post_type ][ $context ][ $priority ][ $id ]['title'] = __( 'Usage statistics - GDPR compliant', 'figurentheater' );
 }
 
 
@@ -97,17 +96,21 @@ function cleanup_admin_ui() : void {
 
 	update_needed_roles();
 
-	add_action( 'admin_footer_text', function(){
-		// doesnt work
-		// $_koko = new KokoAnalytics\Admin;
-		// \remove_action( 'admin_footer_text', array( $_koko, 'footer_text' ) );
-		// works !
-		remove_all_actions( 'admin_footer_text', 10 );
-	}, 0 );
+	add_action( 
+		'admin_footer_text',
+		function() {
+			// doesnt work
+			// $_koko = new KokoAnalytics\Admin;
+			// \remove_action( 'admin_footer_text', array( $_koko, 'footer_text' ) );
+			// works !
+			remove_all_actions( 'admin_footer_text', 10 );
+		},
+		0
+	);
 
 
-	#if ( \current_user_can( 'manage_sites' ) )
-	#	return;
+	// if ( \current_user_can( 'manage_sites' ) )
+		// return;
 
 	echo '<style>
 		#koko-analytics-admin .two.nav .subsubsub {
@@ -118,8 +121,9 @@ function cleanup_admin_ui() : void {
 
 function update_needed_roles() {
 
-	$editor = get_role( 'editor' );
+	$editor        = get_role( 'editor' );
 	$administrator = get_role( 'administrator' );
+
 	$editor->add_cap( 'view_koko_analytics' );
 	$administrator->add_cap( 'view_koko_analytics' );
 }
