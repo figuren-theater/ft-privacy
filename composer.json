@@ -35,7 +35,8 @@
         "figuren-theater/ft-options": "^1",
         "wpackagist-plugin/embed-privacy": "1.4.8",
         "wpackagist-plugin/koko-analytics": "1.0.35",
-        "wpackagist-plugin/surbma-gdpr-multisite-privacy": "2.0"
+        "wpackagist-plugin/surbma-gdpr-multisite-privacy": "2.0",
+        "koodimonni/composer-dropin-installer": "^1.4"
     },
     "extra": {
         "altis": {
@@ -43,6 +44,11 @@
                 "wpackagist-plugin/embed-privacy",
                 "wpackagist-plugin/koko-analytics",
                 "wpackagist-plugin/surbma-gdpr-multisite-privacy"
+            ]
+        },
+        "dropin-paths": {
+            "content/": [
+                "package:figuren-theater/ft-privacy:inc/koko-analytics/k.php"
             ]
         }
     }

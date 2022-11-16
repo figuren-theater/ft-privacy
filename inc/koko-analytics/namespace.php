@@ -7,7 +7,10 @@
 
 namespace Figuren_Theater\Privacy\Koko_Analytics;
 
+use FT_ROOT_DIR;
 use FT_VENDOR_DIR;
+
+use WP_CONTENT_DIR;
 
 use Figuren_Theater;
 use Figuren_Theater\Options;
@@ -15,6 +18,7 @@ use function Figuren_Theater\get_config;
 
 use function add_action;
 use function add_filter;
+use function get_current_blog_id;
 use function get_role;
 use function remove_all_actions;
 use function remove_submenu_page;
@@ -22,14 +26,43 @@ use function remove_submenu_page;
 const BASENAME   = 'koko-analytics/koko-analytics.php';
 const PLUGINPATH = FT_VENDOR_DIR . '/wpackagist-plugin/' . BASENAME;
 
+// Will be used by site_url(), so make this relative.
+const CUSTOM_ENDPOINT = '/content/k.php'; 
+
+
+
 /**
  * Bootstrap module, when enabled.
  */
 function bootstrap() : void {
 
+	bootstrap_custom_endpoint();
+
 	add_action( 'Figuren_Theater\loaded', __NAMESPACE__ . '\\filter_options', 11 );
 	
 	add_action( 'plugins_loaded', __NAMESPACE__ . '\\load_plugin' );
+}
+
+/**
+ * Use Kokos default tracking method for single-site installs also on MUltisite, as it is faster.
+ * 
+ * Using a custom endpoint over admin-ajax.php
+ * is the default way how Koko-Analytics handles tracking in single-site installs,
+ * but falls back to slower admin-ajax.php for Multisite.
+ *
+ * This custom endpoints fixes this and uses the faster tracking method.
+ *
+ * @package Figuren_Theater\Privacy\Koko_Analytics
+ * @since   
+ */
+function bootstrap_custom_endpoint() :void {
+
+	if ( file_exists( FT_ROOT_DIR . CUSTOM_ENDPOINT ) ) {
+
+		$cbid = get_current_blog_id();
+		define( 'KOKO_ANALYTICS_CUSTOM_ENDPOINT', CUSTOM_ENDPOINT . '?c=' . $cbid );
+		define( 'KOKO_ANALYTICS_BUFFER_FILE', WP_CONTENT_DIR . '/uploads/sites/' . $cbid . '/pageviews.php' );
+	}
 }
 
 function load_plugin() : void {
