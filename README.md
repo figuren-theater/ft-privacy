@@ -19,3 +19,16 @@ Thoose are completely managed by code and lack of their typical UI.
 Accompaniying the core functionality of the mentioned plugins, theese **best practices** are included with this package.
 
 - ...
+
+
+Add the following to your composer project:
+
+```
+"extra": {
+    "dropin-paths": {
+        "content/": [
+            "package:figuren-theater/ft-privacy:inc/koko-analytics/k.php"
+        ]
+    }
+}
+```

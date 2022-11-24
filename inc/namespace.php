@@ -16,9 +16,10 @@ use function Altis\register_module;
 function register() {
 
 	$default_settings = [
-		'enabled' => true, // needs to be set
+		'enabled'        => true, // needs to be set
 		'koko-analytics' => false, // disabled for the planet
 	];
+	
 	$options = [
 		'defaults' => $default_settings,
 	];

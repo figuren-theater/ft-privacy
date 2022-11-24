@@ -16,6 +16,8 @@ use Figuren_Theater;
 use Figuren_Theater\Options;
 use function Figuren_Theater\get_config;
 
+use WP_Admin_Bar;
+
 use function add_action;
 use function add_filter;
 use function get_current_blog_id;
@@ -78,6 +80,8 @@ function load_plugin() : void {
 	add_action( 'admin_head-dashboard_page_koko-analytics', __NAMESPACE__ . '\\cleanup_admin_ui' );
 	
 	add_action( 'wp_dashboard_setup', __NAMESPACE__ . '\\change_meta_box_title', 11 );
+	
+	add_action( 'admin_bar_menu', __NAMESPACE__ . '\\remove_from_admin_bar', 999 );
 }
 
 
@@ -159,4 +163,14 @@ function update_needed_roles() {
 
 	$editor->add_cap( 'view_koko_analytics' );
 	$administrator->add_cap( 'view_koko_analytics' );
+}
+
+function remove_from_admin_bar( WP_Admin_Bar $wp_admin_bar ) {
+	$koko = $wp_admin_bar->get_node( 'koko-analytics' );
+
+	if ( $koko ) {
+		$koko->title = __( 'Zugriffe', 'figurentheater' );
+        // update the Toolbar node
+        $wp_admin_bar->add_node( $koko );
+	}
 }

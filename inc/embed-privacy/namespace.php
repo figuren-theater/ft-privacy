@@ -36,7 +36,7 @@ function load_plugin() {
 	if ( ! defined( 'EPI_EMBED_PRIVACY_BASE' ) ) define( 'EPI_EMBED_PRIVACY_BASE', FT_VENDOR_DIR . '/wpackagist-plugin/embed-privacy/' );
 
 	require_once PLUGINPATH;
-	
+
 	// Remove plugins menu
 	add_action( 'admin_menu', __NAMESPACE__ . '\\remove_menu', 11 );
 
@@ -52,6 +52,10 @@ function load_plugin() {
 	// if we set the shortcode attr 'subline' to empty values, 
 	// empty html-tags are still rendered
 	add_filter( 'embed_privacy_opt_out_subline', '__return_false' );
+
+	// the plugin registers its PT on 'init:5'
+	add_filter( 'register_epi_embed_post_type_args', __NAMESPACE__ . '\\disable_export' );
+
 }
 
 
@@ -190,3 +194,12 @@ function activation() {
 	remove_filter( $_option_filter, '__return_zero', 1037 );
 }
 
+/**
+ * [prevent_export of 'epi_embed' post_type]
+ *
+ * @return  array    register_post_type arguments
+ */
+function disable_export( $args ) {
+	$args['can_export'] = false;
+	return $args;
+}
