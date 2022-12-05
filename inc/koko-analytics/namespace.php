@@ -22,6 +22,7 @@ use function add_action;
 use function add_filter;
 use function get_current_blog_id;
 use function get_role;
+use function is_network_admin;
 use function remove_all_actions;
 use function remove_submenu_page;
 
@@ -69,6 +70,9 @@ function bootstrap_custom_endpoint() :void {
 
 function load_plugin() : void {
 
+	if ( is_network_admin() )
+		return;
+	
 	$config = Figuren_Theater\get_config()['modules']['privacy'];
 	if ( ! $config['koko-analytics'] )
 		return; // early

@@ -15,6 +15,7 @@ use epiphyt\Embed_Privacy as Embed_Privacy_Plugin;
 
 use function add_action;
 use function add_filter;
+use function is_network_admin;
 use function remove_filter;
 use function remove_submenu_page;
 
@@ -33,6 +34,9 @@ function bootstrap() {
 
 function load_plugin() {
 
+	if ( is_network_admin() )
+		return;
+	
 	if ( ! defined( 'EPI_EMBED_PRIVACY_BASE' ) ) define( 'EPI_EMBED_PRIVACY_BASE', FT_VENDOR_DIR . '/wpackagist-plugin/embed-privacy/' );
 
 	require_once PLUGINPATH;
