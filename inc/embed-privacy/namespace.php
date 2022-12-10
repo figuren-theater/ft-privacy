@@ -45,8 +45,8 @@ function load_plugin() {
 	add_action( 'admin_menu', __NAMESPACE__ . '\\remove_menu', 11 );
 
 	// Add defer attribute to script tag
-	add_filter( 'script_loader_tag', __NAMESPACE__ . '\\defer_frontend_js', 0, 3 );
-
+	// add_filter( 'script_loader_tag', __NAMESPACE__ . '\\defer_frontend_js', 0, 3 );
+	add_filter( 'Figuren_Theater\Theming\Defer_Async_Loader\scripts_to_defer', __NAMESPACE__ . '\\defer_frontend_js', 0, 3 );
 	//
 	add_action( 'Figuren_Theater\Network\Setup\insert_first_content', __NAMESPACE__ . '\\activation' );
 
@@ -142,7 +142,6 @@ function remove_menu() : void {
  * @param      string $src        The script's source URL.
  * 
  * @return     string $tag        The `<script defer>` tag for the enqueued script.
- */
 function defer_frontend_js( string $tag, string $handle, string $src ) : string {
 
 	// if not our script, do nothing and return original $tag
@@ -156,7 +155,14 @@ function defer_frontend_js( string $tag, string $handle, string $src ) : string 
 	$tag = str_replace( '></script>', ' defer></script>', $tag );
 	return $tag;
 }
+ */
 
+function defer_frontend_js( array $scripts_to_defer ) : array {
+
+	$scripts_to_defer[] = 'embed-privacy';
+
+	return $scripts_to_defer;
+}
 
 /**
  * Creates ra. 37 'epi_embed' posts
