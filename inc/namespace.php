@@ -16,8 +16,9 @@ use function Altis\register_module;
 function register() {
 
 	$default_settings = [
-		'enabled'        => true, // needs to be set
-		'koko-analytics' => false, // disabled for the planet
+		'enabled'          => true, // needs to be set
+		'compressed-emoji' => false, // disabled for the planet
+		'koko-analytics'   => false, // disabled for the planet
 	];
 	
 	$options = [
@@ -38,6 +39,7 @@ function register() {
  */
 function bootstrap() {
 
+	Compressed_Emoji\bootstrap();
 	Embed_Privacy\bootstrap();
 	Koko_Analytics\bootstrap();
 	Surbma_GDPR_Multisite_Privacy\bootstrap();

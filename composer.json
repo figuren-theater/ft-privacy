@@ -3,7 +3,7 @@
     "description": "Privacy first! And this is the code that does it. Curated for the WordPress Multisite figuren.theater",
     "homepage": "https://websites.fuer.figuren.theater",
     "type": "wordpress-muplugin",
-    "keywords": ["wordpress", "privacy", "GDPR"],
+    "keywords": ["wordpress", "privacy", "GDPR", "anaylytics", "emoji"],
     "license": "GPL-3.0-or-later",
     "authors": [
         {
@@ -24,6 +24,7 @@
     },
     "autoload": {
         "files": [
+            "inc/compressed-emoji/namespace.php",
             "inc/embed-privacy/namespace.php",
             "inc/koko-analytics/namespace.php",
             "inc/surbma-gdpr-multisite-privacy/namespace.php",
@@ -46,6 +47,7 @@
     "require": {
         "php": ">=7.1",
         "figuren-theater/ft-options": "^1",
+        "wpackagist-plugin/compressed-emoji":"1.4",
         "wpackagist-plugin/embed-privacy": "1.4.8",
         "wpackagist-plugin/koko-analytics": "1.0.35",
         "wpackagist-plugin/surbma-gdpr-multisite-privacy": "2.0",
@@ -54,6 +56,7 @@
     "extra": {
         "altis": {
             "install-overrides": [
+                "wpackagist-plugin/compressed-emoji",
                 "wpackagist-plugin/embed-privacy",
                 "wpackagist-plugin/koko-analytics",
                 "wpackagist-plugin/surbma-gdpr-multisite-privacy"

@@ -174,7 +174,7 @@ function remove_from_admin_bar( WP_Admin_Bar $wp_admin_bar ) {
 
 	if ( $koko ) {
 		$koko->title = __( 'Zugriffe', 'figurentheater' );
-        // update the Toolbar node
-        $wp_admin_bar->add_node( $koko );
+		// update the Toolbar node
+		$wp_admin_bar->add_node( $koko );
 	}
 }
