@@ -20,7 +20,7 @@ Thoose are completely managed by code and lack of their typical UI.
 
 Accompaniying the core functionality of the mentioned plugins, theese **best practices** are included with this package.
 
-- ...
+* Load 3rd-party fonts, especially 'Google fonts', locally.
 
 
 Add the following to your composer project:

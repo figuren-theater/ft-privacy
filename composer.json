@@ -3,7 +3,7 @@
     "description": "Privacy first! And this is the code that does it. Curated for the WordPress Multisite figuren.theater",
     "homepage": "https://websites.fuer.figuren.theater",
     "type": "wordpress-muplugin",
-    "keywords": ["wordpress", "privacy", "GDPR", "anaylytics", "emoji"],
+    "keywords": ["wordpress", "privacy", "GDPR", "anaylytics", "emoji", "fonts"],
     "license": "GPL-3.0-or-later",
     "authors": [
         {
@@ -28,6 +28,7 @@
             "inc/embed-privacy/namespace.php",
             "inc/koko-analytics/namespace.php",
             "inc/surbma-gdpr-multisite-privacy/namespace.php",
+            "inc/wptt-webfont-loader/namespace.php",
             "inc/namespace.php"
         ],
         "classmap": [

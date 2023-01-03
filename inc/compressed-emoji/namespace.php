@@ -29,9 +29,6 @@ function bootstrap() {
 
 function load_plugin() {
 
-	if ( is_network_admin() || is_user_admin() )
-		return;
-	
 	$config = Figuren_Theater\get_config()['modules']['privacy'];
 	if ( ! $config['compressed-emoji'] )
 		return; // early

@@ -39,8 +39,12 @@ function register() {
  */
 function bootstrap() {
 
+	// Plugins
 	Compressed_Emoji\bootstrap();
 	Embed_Privacy\bootstrap();
 	Koko_Analytics\bootstrap();
 	Surbma_GDPR_Multisite_Privacy\bootstrap();
+
+	// Best practices
+	WPTT_WebFont_Loader\bootstrap();
 }
