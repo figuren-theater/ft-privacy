@@ -10,7 +10,7 @@ This package contains the following plugins.
 Thoose are completely managed by code and lack of their typical UI.
 
 * [Embed Privacy](https://wordpress.org/plugins/embed-privacy/#developers)
-* [compressed-emoji: 😬 👉 😑](https://github.com/mustafauysal/compressed-emoji/)
+* [compressed-emoji: 😬 👉 😑](https://wordpress.org/plugins/compressed-emoji/#developers)
     Same emoji, but compressed. It helps to serve emoji via your server.
 * [Koko Analytics](https://wordpress.org/plugins/koko-analytics/#developers)
 * [Surbma | GDPR Multisite Privacy](https://wordpress.org/plugins/surbma-gdpr-multisite-privacy/#developers)
