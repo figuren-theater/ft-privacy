@@ -104,11 +104,12 @@ function filter_options() : void {
 		'default_view'            => 'last_28_days',
 	];
 
-	new Options\Option(
+	$koko_analytics_settings = new Options\Option(
 		'koko_analytics_settings',
 		$_options,
 		BASENAME,
 	);
+	$koko_analytics_settings->db_strategy = 'autoload';
 }
 
 function change_menu_title() : void {
