@@ -78,7 +78,7 @@ function filter_options() {
 		// normal calls onto this option 
 		// are prevented by the falsish state 
 		// of  'is_migrating 
-		'embed_privacy_migrate_version' => 'initial', 
+		#DISABLED 4 being a bad idea! 'embed_privacy_migrate_version' => 'initial', 
 
 		// prevents this from beeing added on every admin_init-call
 		// THIS PREVENTS 5 DB queries
@@ -87,7 +87,7 @@ function filter_options() {
 		// 
 		// but this needs to have the initatial setup done 
 		// on site setup
-		'embed_privacy_is_migrating' => 1, // !!!!
+		#DISABLED 4 being a bad idea! 'embed_privacy_is_migrating' => 1, // !!!!
 
 		//
 		'embed_privacy_javascript_detection' => 'yes',
