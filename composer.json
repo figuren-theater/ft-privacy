@@ -54,6 +54,9 @@
         "wpackagist-plugin/surbma-gdpr-multisite-privacy": "^2",
         "koodimonni/composer-dropin-installer": "^1.4"
     },
+    "suggest": {
+        "figuren-theater/ft-onboarding": "Contains the mandatory filter, which will help to pseudo-activate the Embed-Privacy-Plugin, if available."
+    },
     "extra": {
         "altis": {
             "install-overrides": [
