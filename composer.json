@@ -1,9 +1,9 @@
 {
     "name": "figuren-theater/ft-privacy",
-    "description": "Privacy first! And this is the code that does it. Curated for the WordPress Multisite figuren.theater",
+    "description": "Privacy first! And this is the code that does it. Curated for the WordPress multisite network figuren.theater",
     "homepage": "https://websites.fuer.figuren.theater",
     "type": "wordpress-muplugin",
-    "keywords": ["wordpress", "privacy", "GDPR", "anaylytics", "emoji", "fonts"],
+    "keywords": ["wordpress", "privacy", "GDPR", "analytics", "emoji", "fonts"],
     "license": "GPL-3.0-or-later",
     "authors": [
         {
