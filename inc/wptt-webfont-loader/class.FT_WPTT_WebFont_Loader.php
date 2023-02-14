@@ -8,7 +8,7 @@ use WPTT_WebFont_Loader as Original;
 /**
  * 
  */
-class FT_WPTT_WebFont_Loader extends Original\WPTT_WebFont_Loader
+class FT_WPTT_WebFont_Loader extends Original
 {
 
 	/**
