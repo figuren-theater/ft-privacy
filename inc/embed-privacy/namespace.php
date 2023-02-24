@@ -37,7 +37,8 @@ function load_plugin() {
 	if ( is_network_admin() )
 		return;
 	
-	if ( ! defined( 'EPI_EMBED_PRIVACY_BASE' ) ) define( 'EPI_EMBED_PRIVACY_BASE', FT_VENDOR_DIR . '/wpackagist-plugin/embed-privacy/' );
+	if ( ! defined( 'EPI_EMBED_PRIVACY_BASE' ) ) 
+		define( 'EPI_EMBED_PRIVACY_BASE', FT_VENDOR_DIR . '/wpackagist-plugin/embed-privacy/' );
 
 	require_once PLUGINPATH;
 
