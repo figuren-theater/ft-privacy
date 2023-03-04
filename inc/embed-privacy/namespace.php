@@ -37,7 +37,8 @@ function load_plugin() {
 	if ( is_network_admin() )
 		return;
 	
-	if ( ! defined( 'EPI_EMBED_PRIVACY_BASE' ) ) define( 'EPI_EMBED_PRIVACY_BASE', FT_VENDOR_DIR . '/wpackagist-plugin/embed-privacy/' );
+	if ( ! defined( 'EPI_EMBED_PRIVACY_BASE' ) ) 
+		define( 'EPI_EMBED_PRIVACY_BASE', FT_VENDOR_DIR . '/wpackagist-plugin/embed-privacy/' );
 
 	require_once PLUGINPATH;
 
@@ -94,6 +95,9 @@ function filter_options() {
 		'embed_privacy_javascript_detection' => 'yes',
 		'embed_privacy_local_tweets' => 'yes',
 		'embed_privacy_preserve_data_on_uninstall' => '', // empty string by default
+		
+		'embed_privacy_download_thumbnails' => 'yes', // 
+		'embed_privacy_disable_link' => 0, // 
 	];
 
 	new Options\Factory( 
@@ -114,12 +118,12 @@ function filter_options() {
 	// normal calls onto this option 
 	// are prevented by the falsish state 
 	// of  'is_migrating 
-	new Options\Option(
-		'embed_privacy_migrate_version',
-		'initial',
-		BASENAME,
-		'site_option'
-	);
+#	new Options\Option(
+#		'embed_privacy_migrate_version',
+#		'initial',
+#		BASENAME,
+#		'site_option'
+#	);
 }
 
 function remove_menu() : void {
