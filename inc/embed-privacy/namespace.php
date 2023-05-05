@@ -50,7 +50,7 @@ function load_plugin() {
 	add_filter( 'Figuren_Theater\Theming\Defer_Async_Loader\scripts_to_defer', __NAMESPACE__ . '\\defer_frontend_js', 0, 3 );
 	//
 	// add_action( 'Figuren_Theater\Network\Setup\insert_first_content', __NAMESPACE__ . '\\activation' );
-	add_action( 'Figuren_Theater\Onboarding\Sites\Installation\insert_first_content', __NAMESPACE__ . '\\activation' );
+	// add_action( 'Figuren_Theater\Onboarding\Sites\Installation\insert_first_content', __NAMESPACE__ . '\\activation' );
 
 	// if we set the shortcode attr 'headline' to empty values, 
 	// empty html-tags are still rendered
@@ -92,12 +92,11 @@ function filter_options() {
 		#DISABLED 4 being a bad idea! 'embed_privacy_is_migrating' => 1, // !!!!
 
 		//
-		'embed_privacy_javascript_detection' => 'yes',
-		'embed_privacy_local_tweets' => 'yes',
+		'embed_privacy_javascript_detection'       => 'yes',
+		'embed_privacy_local_tweets'               => 'yes',
 		'embed_privacy_preserve_data_on_uninstall' => '', // empty string by default
-		
-		'embed_privacy_download_thumbnails' => 'yes', // 
-		'embed_privacy_disable_link' => 0, // 
+		'embed_privacy_download_thumbnails'        => 'yes', // 
+		'embed_privacy_disable_link'               => 0, // 
 	];
 
 	new Options\Factory( 
