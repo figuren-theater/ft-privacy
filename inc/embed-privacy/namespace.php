@@ -92,12 +92,11 @@ function filter_options() {
 		#DISABLED 4 being a bad idea! 'embed_privacy_is_migrating' => 1, // !!!!
 
 		//
-		'embed_privacy_javascript_detection' => 'yes',
-		'embed_privacy_local_tweets' => 'yes',
+		'embed_privacy_javascript_detection'       => 'yes',
+		'embed_privacy_local_tweets'               => 'yes',
 		'embed_privacy_preserve_data_on_uninstall' => '', // empty string by default
-		
-		'embed_privacy_download_thumbnails' => 'yes', // 
-		'embed_privacy_disable_link' => 0, // 
+		'embed_privacy_download_thumbnails'        => 'yes', // 
+		'embed_privacy_disable_link'               => 0, // 
 	];
 
 	new Options\Factory( 
