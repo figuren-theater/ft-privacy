@@ -50,7 +50,7 @@ function load_plugin() {
 	add_filter( 'Figuren_Theater\Theming\Defer_Async_Loader\scripts_to_defer', __NAMESPACE__ . '\\defer_frontend_js', 0, 3 );
 	//
 	// add_action( 'Figuren_Theater\Network\Setup\insert_first_content', __NAMESPACE__ . '\\activation' );
-	add_action( 'Figuren_Theater\Onboarding\Sites\Installation\insert_first_content', __NAMESPACE__ . '\\activation' );
+	// add_action( 'Figuren_Theater\Onboarding\Sites\Installation\insert_first_content', __NAMESPACE__ . '\\activation' );
 
 	// if we set the shortcode attr 'headline' to empty values, 
 	// empty html-tags are still rendered
