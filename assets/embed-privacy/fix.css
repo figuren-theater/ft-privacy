@@ -1,0 +1,10 @@
+.embed-privacy-provider {
+	display: flex;
+	align-items: first baseline;
+	break-inside: avoid-column;
+	margin-bottom: .5em;
+}
+
+.embed-privacy-opt-out-label span {
+	display: block;
+}
