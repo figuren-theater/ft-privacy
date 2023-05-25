@@ -62,6 +62,9 @@ function load_plugin() {
 	// the plugin registers its PT on 'init:5'
 	add_filter( 'register_epi_embed_post_type_args', __NAMESPACE__ . '\\disable_export' );
 
+	// load some additional styles
+	add_action( 'after_setup_theme', __NAMESPACE__ . '\\enqueue_css_fix' );
+
 }
 
 
@@ -216,4 +219,28 @@ function activation() {
 function disable_export( $args ) {
 	$args['can_export'] = false;
 	return $args;
+}
+	
+
+
+
+function enqueue_css_fix() {
+	// Same args used for wp_enqueue_style().
+	$args = array(
+		'handle' => 'embed-privacy-fix',
+		'src'    => Privacy\ASSETS_URL . 'embed-privacy/fix.css',
+		'deps'   => array( 'embed-privacy' ),
+	);
+
+	// Add "path" to allow inlining asset if the theme opts-in.
+	$args['path'] = Privacy\DIRECTORY . 'assets/embed-privacy/fix.css';
+
+	// Enqueue asset.
+	wp_enqueue_style( 
+		$args['handle'],
+		$args['src'],
+		$args['deps'],
+		null,
+		'screen',
+	);
 }
