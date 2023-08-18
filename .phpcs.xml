@@ -15,6 +15,7 @@
 	and not running within ft-platform
 	-->
 	<exclude-pattern>*/wp-content/*</exclude-pattern>
+	<exclude-pattern>*/inc/wptt-webfont-loader/wptt-webfont-loader/*</exclude-pattern>
 
 	<!-- Use figuren.theater Coding Standards -->
 	<rule ref="figurentheater" />

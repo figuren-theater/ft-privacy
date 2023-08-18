@@ -7,11 +7,11 @@
 
 namespace Figuren_Theater\Privacy\Embed_Privacy;
 
-use Figuren_Theater\Options;
-
-use FT_VENDOR_DIR;
-
 use epiphyt\Embed_Privacy as Embed_Privacy_Plugin;
+
+use Figuren_Theater\Options;
+use Figuren_Theater\Privacy;
+use FT_VENDOR_DIR;
 
 use function add_action;
 use function add_filter;
@@ -20,55 +20,67 @@ use function remove_filter;
 use function remove_submenu_page;
 
 const BASENAME   = 'embed-privacy/embed-privacy.php';
-const PLUGINPATH = FT_VENDOR_DIR . '/wpackagist-plugin/' . BASENAME;
+const PLUGINPATH = '/wpackagist-plugin/' . BASENAME;
 
 /**
  * Bootstrap module, when enabled.
+ *
+ * @return void
  */
-function bootstrap() {
+function bootstrap() :void {
 
 	add_action( 'Figuren_Theater\loaded', __NAMESPACE__ . '\\filter_options', 11 );
 
 	add_action( 'plugins_loaded', __NAMESPACE__ . '\\load_plugin', 0 );
 }
 
-function load_plugin() {
+/**
+ * Conditionally load the plugin itself and its modifications.
+ *
+ * @return void
+ */
+function load_plugin() :void {
 
-	if ( is_network_admin() )
+	if ( is_network_admin() ) {
 		return;
+	}
 
-	if ( ! defined( 'EPI_EMBED_PRIVACY_BASE' ) )
+	if ( ! defined( 'EPI_EMBED_PRIVACY_BASE' ) ) {
 		define( 'EPI_EMBED_PRIVACY_BASE', FT_VENDOR_DIR . '/wpackagist-plugin/embed-privacy/' );
+	}
 
-	require_once PLUGINPATH;
+	require_once FT_VENDOR_DIR . PLUGINPATH; // phpcs:ignore WordPressVIPMinimum.Files.IncludingFile.UsingCustomConstant
 
-	// Remove plugins menu
+	// Remove plugins menu.
 	add_action( 'admin_menu', __NAMESPACE__ . '\\remove_menu', 11 );
 
 	// Add defer attribute to script tag
-	// add_filter( 'script_loader_tag', __NAMESPACE__ . '\\defer_frontend_js', 0, 3 );
+	// @todo #21 Use core script registration using 'defer' attribute
+	// @see  https://make.wordpress.org/core/2023/07/14/registering-scripts-with-async-and-defer-attributes-in-wordpress-6-3/
+	// Was before: add_filter( 'script_loader_tag', __NAMESPACE__ . '\\defer_frontend_js', 0, 3 ); // !
 	add_filter( 'Figuren_Theater\Theming\Defer_Async_Loader\scripts_to_defer', __NAMESPACE__ . '\\defer_frontend_js', 0, 3 );
-	//
-	// add_action( 'Figuren_Theater\Network\Setup\insert_first_content', __NAMESPACE__ . '\\activation' );
-	// add_action( 'Figuren_Theater\Onboarding\Sites\Installation\insert_first_content', __NAMESPACE__ . '\\activation' );
 
-	// if we set the shortcode attr 'headline' to empty values,
-	// empty html-tags are still rendered
+	// If we set the shortcode attr 'headline' to empty values,
+	// empty html-tags are still rendered.
 	add_filter( 'embed_privacy_opt_out_headline', '__return_false' );
-	// if we set the shortcode attr 'subline' to empty values,
-	// empty html-tags are still rendered
+	// If we set the shortcode attr 'subline' to empty values,
+	// empty html-tags are still rendered.
 	add_filter( 'embed_privacy_opt_out_subline', '__return_false' );
 
-	// the plugin registers its PT on 'init:5'
+	// The plugin registers its PT on 'init:5'.
 	add_filter( 'register_epi_embed_post_type_args', __NAMESPACE__ . '\\disable_export' );
 
-	// load some additional styles
+	// Load some additional styles.
 	add_action( 'after_setup_theme', __NAMESPACE__ . '\\enqueue_css_fix' );
 
 }
 
-
-function filter_options() {
+/**
+ * Handle options
+ *
+ * @return void
+ */
+function filter_options() :void {
 
 	$_options = [
 
@@ -78,13 +90,13 @@ function filter_options() {
 		//
 		// set to sth. higher than 1.2.0, where 30+ 'epi_embed' posts are created
 		// 'embed_privacy_migrate_version' => '1.4.0', // plugin version 1.4.4
-
+		//
 		// only used for custom triggered migration-routine,
 		// normal calls onto this option
 		// are prevented by the falsish state
 		// of  'is_migrating
-		#DISABLED 4 being a bad idea! 'embed_privacy_migrate_version' => 'initial',
-
+		// DISABLED 4 being a bad idea! 'embed_privacy_migrate_version' => 'initial',
+		//
 		// prevents this from beeing added on every admin_init-call
 		// THIS PREVENTS 5 DB queries
 		// and reduces admin load-time from 0.20 s to 0.02s
@@ -92,22 +104,24 @@ function filter_options() {
 		//
 		// but this needs to have the initatial setup done
 		// on site setup
-		#DISABLED 4 being a bad idea! 'embed_privacy_is_migrating' => 1, // !!!!
+		// DISABLED 4 being a bad idea! 'embed_privacy_is_migrating' => 1, // !!!!
 
-		//
 		'embed_privacy_javascript_detection'       => 'yes',
 		'embed_privacy_local_tweets'               => 'yes',
-		'embed_privacy_preserve_data_on_uninstall' => '', // empty string by default
-		'embed_privacy_download_thumbnails'        => 'yes', //
-		'embed_privacy_disable_link'               => 0, //
+		'embed_privacy_preserve_data_on_uninstall' => '', // An empty string by default.
+		'embed_privacy_download_thumbnails'        => 'yes',
+		'embed_privacy_disable_link'               => 0,
 	];
 
+	/*
+	 * Gets added to the 'OptionsCollection'
+	 * from within itself on creation.
+	 */
 	new Options\Factory(
 		$_options,
 		'Figuren_Theater\Options\Option',
-		BASENAME,
+		BASENAME
 	);
-
 
 	// BEWARE, this is not the plugin-version,
 	// but a $version var in class-migration.php,
@@ -115,56 +129,40 @@ function filter_options() {
 	//
 	// set to sth. higher than 1.2.0, where 30+ 'epi_embed' posts are created
 	// 'embed_privacy_migrate_version' => '1.4.0', // plugin version 1.4.4
-
+	//
 	// only used for custom triggered migration-routine,
 	// normal calls onto this option
 	// are prevented by the falsish state
 	// of  'is_migrating
-#	new Options\Option(
-#		'embed_privacy_migrate_version',
-#		'initial',
-#		BASENAME,
-#		'site_option'
-#	);
+	//
+	// new Options\Option(
+	// 'embed_privacy_migrate_version',
+	// 'initial',
+	// BASENAME,
+	// 'site_option'
+	// ); // .
 }
 
-function remove_menu() : void {
+/**
+ * Hide the plugins admin-menu
+ *
+ * @return void
+ */
+function remove_menu() :void {
 	remove_submenu_page( 'options-general.php', 'embed_privacy' );
 }
 
-
 /**
- * Add defer attribute to script tag
+ * Load 'embed-privacy' JS defered.
  *
- * Renders the plugin frontend script with added defer attribute,
- * to prevent render blocking.
+ * @todo #21 Use core script registration using 'defer' attribute
+ * @see  https://make.wordpress.org/core/2023/07/14/registering-scripts-with-async-and-defer-attributes-in-wordpress-6-3/
  *
- * @version    2022-10-24
- * @author     Carsten Bach
+ * @param string[] $scripts_to_defer Handles of JS files to enqueue 'defer'ed.
  *
- * @uses       script_loader_tag  Filters the HTML script tag of an enqueued script.
- *
- * @param      string $tag        The `<script>` tag for the enqueued script.
- * @param      string $handle     The script's registered handle.
- * @param      string $src        The script's source URL.
- *
- * @return     string $tag        The `<script defer>` tag for the enqueued script.
-function defer_frontend_js( string $tag, string $handle, string $src ) : string {
-
-	// if not our script, do nothing and return original $tag
-	if ( 'embed-privacy' !== $handle )
-		return $tag;
-
-	// if this is alrady done, do nothing and return original $tag
-	if ( strpos( $tag, 'defer' ) || strpos( $tag, 'async' ) )
-		return $tag;
-
-	$tag = str_replace( '></script>', ' defer></script>', $tag );
-	return $tag;
-}
+ * @return string[]
  */
-
-function defer_frontend_js( array $scripts_to_defer ) : array {
+function defer_frontend_js( array $scripts_to_defer ) :array {
 
 	$scripts_to_defer[] = 'embed-privacy';
 
@@ -176,61 +174,69 @@ function defer_frontend_js( array $scripts_to_defer ) : array {
  *
  * Normally done on every !!! admin page-request.
  *
+ * add_action( 'Figuren_Theater\Network\Setup\insert_first_content', __NAMESPACE__ . '\\activation' );
+ * add_action( 'Figuren_Theater\Onboarding\Sites\Installation\insert_first_content', __NAMESPACE__ . '\\activation' );
+
+ * @deprecated 2023.08.18
+ *
  * @version 2022.06.10
  * @author  Carsten Bach
- *
  */
 function activation() {
 
-	if ( ! class_exists('Embed_Privacy_Plugin\\Migration'))
-		return; // early
+	if ( ! class_exists( 'Embed_Privacy_Plugin\\Migration' ) ) {
+		return;
+	}
 
 	$_option_name   = 'embed_privacy_is_migrating';
 	$_option_filter = 'pre_option_' . $_option_name;
 
 	add_filter( $_option_filter, '__return_zero', 1037 );
 
-	// $epi_option = \Figuren_Theater\API::get('Options')->get( "option_{$_option_name}" );
-	// deactivate option to allow
+	// Deactivate the option to allow
 	// the migration to start
-	// $epi_option->set_value( '0' );
-// \do_action( 'qm/debug', \get_option( $_option_name ) );
+	//
+	// $epi_option = \Figuren_Theater\API::get('Options')->get( "option_{$_option_name}" );
+	// $epi_option->set_value( '0' ); // !
 
 	// Start the regular migration,
 	// usually a post creation routine for 'epi_embed' posts
 	//
 	// this is only possible, as long as
-	// 'migrate_version' is sth. different from the real version-number
+	// 'migrate_version' is sth. different from the real version-number.
 	$ep_migrate = new Embed_Privacy_Plugin\Migration;
 	$ep_migrate->migrate();
 
-	// reset back to before-state
-	// $epi_option->set_value( '1' );
-// \do_action( 'qm/debug', \get_option( $_option_name ) );
+	// Reset back to the before-state and run
+	// $epi_option->set_value( '1' ); //.
 
 	remove_filter( $_option_filter, '__return_zero', 1037 );
 }
 
 /**
- * [prevent_export of 'epi_embed' post_type]
+ * Prevent export of 'epi_embed' post_type
  *
- * @return  array    register_post_type arguments
+ * @param array<string, mixed> $args The register_post_type arguments for the 'epi_embed' post_type.
+ *
+ * @return array<string, mixed>
  */
-function disable_export( $args ) {
+function disable_export( array $args ) :array {
 	$args['can_export'] = false;
 	return $args;
 }
 
-
-
-
-function enqueue_css_fix() {
+/**
+ * Enqueue minimal CSS fix
+ *
+ * @return void
+ */
+function enqueue_css_fix() :void {
 	// Same args used for wp_enqueue_style().
-	$args = array(
+	$args = [
 		'handle' => 'embed-privacy-fix',
 		'src'    => Privacy\ASSETS_URL . 'embed-privacy/fix.css',
-		'deps'   => array( 'embed-privacy' ),
-	);
+		'deps'   => [ 'embed-privacy' ],
+	];
 
 	// Add "path" to allow inlining asset if the theme opts-in.
 	$args['path'] = Privacy\DIRECTORY . 'assets/embed-privacy/fix.css';
@@ -241,6 +247,6 @@ function enqueue_css_fix() {
 		$args['src'],
 		$args['deps'],
 		null,
-		'screen',
+		'screen'
 	);
 }
