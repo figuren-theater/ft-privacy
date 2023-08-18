@@ -1,10 +1,16 @@
 {
     "name": "figuren-theater/ft-privacy",
     "description": "Privacy first! And this is the code that does it. Curated for the WordPress multisite network figuren.theater",
-    "homepage": "https://websites.fuer.figuren.theater",
-    "type": "wordpress-muplugin",
-    "keywords": ["wordpress", "privacy", "GDPR", "analytics", "emoji", "fonts"],
     "license": "GPL-3.0-or-later",
+    "type": "wordpress-muplugin",
+    "keywords": [
+        "wordpress",
+        "privacy",
+        "GDPR",
+        "analytics",
+        "emoji",
+        "fonts"
+    ],
     "authors": [
         {
             "name": "figuren.theater",
@@ -17,12 +23,41 @@
             "role": "Developer"
         }
     ],
+    "homepage": "https://websites.fuer.figuren.theater",
     "support": {
         "email": "info@figuren.theater",
         "issues": "https://github.com/figuren-theater/ft-privacy/issues",
         "source": "https://github.com/figuren-theater/ft-privacy"
     },
+    "require": {
+        "php": ">=7.1",
+        "figuren-theater/ft-options": "^1",
+        "koodimonni/composer-dropin-installer": "^1.4",
+        "wpackagist-plugin/compressed-emoji": "^1.5",
+        "wpackagist-plugin/embed-privacy": "^1.7",
+        "wpackagist-plugin/koko-analytics": "^1.0",
+        "wpackagist-plugin/surbma-gdpr-multisite-privacy": "^2"
+    },
+    "require-dev": {
+        "figuren-theater/code-quality": "^0.6.6"
+    },
+    "suggest": {
+        "figuren-theater/ft-onboarding": "Contains the mandatory filter, which will help to pseudo-activate the Embed-Privacy-Plugin, if available."
+    },
+    "repositories": [
+        {
+            "type": "git",
+            "url": "https://github.com/figuren-theater/ft-options"
+        },
+        {
+            "type": "composer",
+            "url": "https://wpackagist.org"
+        }
+    ],
     "autoload": {
+        "classmap": [
+            "inc/"
+        ],
         "files": [
             "inc/compressed-emoji/namespace.php",
             "inc/embed-privacy/namespace.php",
@@ -30,32 +65,16 @@
             "inc/surbma-gdpr-multisite-privacy/namespace.php",
             "inc/wptt-webfont-loader/namespace.php",
             "inc/namespace.php"
-        ],
-        "classmap": [
-            "inc/"
         ]
     },
-    "repositories": [
-        {
-            "type": "git",
-            "url" : "https://github.com/figuren-theater/ft-options"
-        },
-        {
-            "type": "composer",
-            "url" : "https://wpackagist.org"
+    "config": {
+        "allow-plugins": {
+            "koodimonni/composer-dropin-installer": true,
+            "composer/installers": true,
+            "phpstan/extension-installer": true,
+            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "ergebnis/composer-normalize": true
         }
-    ],
-    "require": {
-        "php": ">=7.1",
-        "figuren-theater/ft-options": "^1",
-        "wpackagist-plugin/compressed-emoji":"^1.4",
-        "wpackagist-plugin/embed-privacy": "^1.7",
-        "wpackagist-plugin/koko-analytics": "^1.0",
-        "wpackagist-plugin/surbma-gdpr-multisite-privacy": "^2",
-        "koodimonni/composer-dropin-installer": "^1.4"
-    },
-    "suggest": {
-        "figuren-theater/ft-onboarding": "Contains the mandatory filter, which will help to pseudo-activate the Embed-Privacy-Plugin, if available."
     },
     "extra": {
         "altis": {
