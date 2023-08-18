@@ -7,6 +7,8 @@ parameters:
         - inc/
         - plugin.php
     excludePaths:
+        analyseAndScan:
+            - inc/wptt-webfont-loader/wptt-webfont-loader/
         analyse:
             - vendor/
             # "/wp-content/" is created during composer install,
@@ -14,7 +16,9 @@ parameters:
             # and not running within ft-platform
             - wp-content/
             - tests/
+    # @todo #26 Find a nicer way instead of ignoring this Error on every ft-module
     ignoreErrors:
-        # Find a nicer way instead of ignoring this Error on every ft-module
+        - '#Constant WP_CONTENT_DIR not found\.#'
+        - '#Constant WPMU_PLUGIN_URL not found\.#'
         - '#Function Altis\\register_module not found\.#'
         - '#Function Figuren_Theater\\get_config not found\.#'

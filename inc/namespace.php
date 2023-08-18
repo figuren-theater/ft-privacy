@@ -9,6 +9,8 @@ namespace Figuren_Theater\Privacy;
 
 use Altis;
 
+const ASSETS_URL = '/FT/ft-privacy/assets/';
+
 /**
  * Register module.
  *

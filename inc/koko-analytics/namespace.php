@@ -21,6 +21,7 @@ use function is_network_admin;
 use function remove_all_actions;
 use WP_Admin_Bar;
 use WP_CONTENT_DIR;
+use WP_Role;
 
 const BASENAME   = 'koko-analytics/koko-analytics.php';
 const PLUGINPATH = '/wpackagist-plugin/' . BASENAME;
@@ -198,14 +199,21 @@ function cleanup_admin_ui() : void {
  * This function updates the capabilities of the 'editor' and 'administrator' roles
  * by adding the 'view_koko_analytics' capability. This capability is required for users
  * with these roles to access Koko Analytics admin-page.
+ *
+ * @return void
  */
-function update_needed_roles() {
+function update_needed_roles() :void {
 
 	$editor        = get_role( 'editor' );
 	$administrator = get_role( 'administrator' );
 
-	$editor->add_cap( 'view_koko_analytics' );
-	$administrator->add_cap( 'view_koko_analytics' );
+	if ( $editor instanceof WP_Role ) {
+		$editor->add_cap( 'view_koko_analytics' );
+	}
+
+	if ( $administrator instanceof WP_Role ) {
+		$administrator->add_cap( 'view_koko_analytics' );
+	}
 }
 
 /**
@@ -218,9 +226,9 @@ function update_needed_roles() {
 function remove_from_admin_bar( WP_Admin_Bar $wp_admin_bar ) :void {
 	$koko = $wp_admin_bar->get_node( 'koko-analytics' );
 
-	if ( $koko ) {
+	if ( \is_object( $koko ) && \property_exists( $koko, 'title' ) ) {
 		$koko->title = __( 'Zugriffe', 'figurentheater' );
 		// Update the Toolbar node.
-		$wp_admin_bar->add_node( $koko );
+		$wp_admin_bar->add_node( (array) $koko );
 	}
 }

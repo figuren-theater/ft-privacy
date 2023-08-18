@@ -7,8 +7,6 @@
 
 namespace Figuren_Theater\Privacy\Embed_Privacy;
 
-use epiphyt\Embed_Privacy as Embed_Privacy_Plugin;
-
 use Figuren_Theater\Options;
 use Figuren_Theater\Privacy;
 use FT_VENDOR_DIR;
@@ -16,8 +14,8 @@ use FT_VENDOR_DIR;
 use function add_action;
 use function add_filter;
 use function is_network_admin;
-use function remove_filter;
 use function remove_submenu_page;
+use WPMU_PLUGIN_URL;
 
 const BASENAME   = 'embed-privacy/embed-privacy.php';
 const PLUGINPATH = '/wpackagist-plugin/' . BASENAME;
@@ -58,7 +56,7 @@ function load_plugin() :void {
 	// @todo #21 Use core script registration using 'defer' attribute
 	// @see  https://make.wordpress.org/core/2023/07/14/registering-scripts-with-async-and-defer-attributes-in-wordpress-6-3/
 	// Was before: add_filter( 'script_loader_tag', __NAMESPACE__ . '\\defer_frontend_js', 0, 3 ); // !
-	add_filter( 'Figuren_Theater\Theming\Defer_Async_Loader\scripts_to_defer', __NAMESPACE__ . '\\defer_frontend_js', 0, 3 );
+	add_filter( 'Figuren_Theater\Theming\Defer_Async_Loader\scripts_to_defer', __NAMESPACE__ . '\\defer_frontend_js', 0 );
 
 	// If we set the shortcode attr 'headline' to empty values,
 	// empty html-tags are still rendered.
@@ -181,7 +179,7 @@ function defer_frontend_js( array $scripts_to_defer ) :array {
  *
  * @version 2022.06.10
  * @author  Carsten Bach
- */
+
 function activation() {
 
 	if ( ! class_exists( 'Embed_Privacy_Plugin\\Migration' ) ) {
@@ -212,6 +210,7 @@ function activation() {
 
 	remove_filter( $_option_filter, '__return_zero', 1037 );
 }
+ */
 
 /**
  * Prevent export of 'epi_embed' post_type
@@ -234,7 +233,7 @@ function enqueue_css_fix() :void {
 	// Same args used for wp_enqueue_style().
 	$args = [
 		'handle' => 'embed-privacy-fix',
-		'src'    => Privacy\ASSETS_URL . 'embed-privacy/fix.css',
+		'src'    => WPMU_PLUGIN_URL . Privacy\ASSETS_URL . 'embed-privacy/fix.css',
 		'deps'   => [ 'embed-privacy' ],
 	];
 
