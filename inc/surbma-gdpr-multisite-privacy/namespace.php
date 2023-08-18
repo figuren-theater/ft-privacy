@@ -2,7 +2,7 @@
 /**
  * Figuren_Theater Privacy Surbma_GDPR_Multisite_Privacy.
  *
- * @package figuren-theater/privacy/surbma_gdpr_multisite_privacy
+ * @package figuren-theater/ft-privacy
  */
 
 namespace Figuren_Theater\Privacy\Surbma_GDPR_Multisite_Privacy;
@@ -34,6 +34,6 @@ function load_plugin() {
 	// - user-admin views
 	if ( ! is_admin() || is_network_admin() || is_user_admin() )
 		return;
-	
+
 	require_once PLUGINPATH;
 }

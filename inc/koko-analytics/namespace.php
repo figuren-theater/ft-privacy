@@ -2,7 +2,7 @@
 /**
  * Figuren_Theater Privacy Koko_Analytics.
  *
- * @package figuren-theater/privacy/koko_analytics
+ * @package figuren-theater/ft-privacy
  */
 
 namespace Figuren_Theater\Privacy\Koko_Analytics;
@@ -30,7 +30,7 @@ const BASENAME   = 'koko-analytics/koko-analytics.php';
 const PLUGINPATH = FT_VENDOR_DIR . '/wpackagist-plugin/' . BASENAME;
 
 // Will be used by site_url(), so make this relative.
-const CUSTOM_ENDPOINT = '/content/k.php'; 
+const CUSTOM_ENDPOINT = '/content/k.php';
 
 
 
@@ -42,13 +42,13 @@ function bootstrap() : void {
 	bootstrap_custom_endpoint();
 
 	add_action( 'Figuren_Theater\loaded', __NAMESPACE__ . '\\filter_options', 11 );
-	
+
 	add_action( 'plugins_loaded', __NAMESPACE__ . '\\load_plugin' );
 }
 
 /**
  * Use Kokos default tracking method for single-site installs also on MUltisite, as it is faster.
- * 
+ *
  * Using a custom endpoint over admin-ajax.php
  * is the default way how Koko-Analytics handles tracking in single-site installs,
  * but falls back to slower admin-ajax.php for Multisite.
@@ -56,7 +56,7 @@ function bootstrap() : void {
  * This custom endpoints fixes this and uses the faster tracking method.
  *
  * @package Figuren_Theater\Privacy\Koko_Analytics
- * @since   
+ * @since
  */
 function bootstrap_custom_endpoint() :void {
 
@@ -72,7 +72,7 @@ function load_plugin() : void {
 
 	if ( is_network_admin() )
 		return;
-	
+
 	$config = Figuren_Theater\get_config()['modules']['privacy'];
 	if ( ! $config['koko-analytics'] )
 		return; // early
@@ -82,18 +82,18 @@ function load_plugin() : void {
 	add_action( 'admin_menu', __NAMESPACE__ . '\\change_menu_title', 20 );
 
 	add_action( 'admin_head-dashboard_page_koko-analytics', __NAMESPACE__ . '\\cleanup_admin_ui' );
-	
+
 	add_action( 'wp_dashboard_setup', __NAMESPACE__ . '\\change_meta_box_title', 11 );
-	
+
 	add_action( 'admin_bar_menu', __NAMESPACE__ . '\\remove_from_admin_bar', 999 );
 }
 
 
 function filter_options() : void {
-	
+
 	$_options = [
 		'use_cookie'              => 0,
-		'exclude_user_roles'      => 
+		'exclude_user_roles'      =>
 		[
 			'administrator',
 			'editor',
@@ -115,7 +115,7 @@ function filter_options() : void {
 function change_menu_title() : void {
 	global $submenu;
 
-	// 
+	//
 	if ( isset( $submenu['index.php'][6][0] ) && 'Analytics' === $submenu['index.php'][6][0] )
 		$submenu['index.php'][6][0] = __( 'Zugriffe', 'figurentheater' );
 }
@@ -138,7 +138,7 @@ function cleanup_admin_ui() : void {
 
 	update_needed_roles();
 
-	add_action( 
+	add_action(
 		'admin_footer_text',
 		function() {
 			// doesnt work

@@ -2,7 +2,7 @@
 /**
  * Figuren_Theater Privacy Compressed_Emoji.
  *
- * @package figuren-theater/privacy/compressed_emoji
+ * @package figuren-theater/ft-privacy
  */
 
 namespace Figuren_Theater\Privacy\Compressed_Emoji;
@@ -32,6 +32,6 @@ function load_plugin() {
 	$config = Figuren_Theater\get_config()['modules']['privacy'];
 	if ( ! $config['compressed-emoji'] )
 		return; // early
-	
+
 	require_once PLUGINPATH;
 }

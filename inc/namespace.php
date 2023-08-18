@@ -2,7 +2,7 @@
 /**
  * Figuren_Theater Privacy.
  *
- * @package figuren-theater/privacy
+ * @package figuren-theater/ft-privacy
  */
 
 namespace Figuren_Theater\Privacy;
@@ -20,7 +20,7 @@ function register() {
 		'compressed-emoji' => false, // disabled for the planet
 		'koko-analytics'   => false, // disabled for the planet
 	];
-	
+
 	$options = [
 		'defaults' => $default_settings,
 	];
