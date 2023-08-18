@@ -2,7 +2,23 @@
 
 All notable changes to this project will be documented in this file.
 
-## [Unreleased](https://github.com/figuren-theater/ft-privacy/compare/1.0.25...HEAD)
+## [Unreleased](https://github.com/figuren-theater/ft-privacy/compare/1.1.0...HEAD)
 
+## [1.1.0](https://github.com/figuren-theater/ft-privacy/compare/1.0.25...1.1.0) - 2023-08-18
 
+### 🚀 Added
 
+- Fix 404 links ([#28](https://github.com/figuren-theater/ft-privacy/pull/28))
+- Establish quality standards ([#20](https://github.com/figuren-theater/ft-privacy/pull/20))
+- Develop ([#15](https://github.com/figuren-theater/ft-privacy/pull/15))
+- Develop ([#14](https://github.com/figuren-theater/ft-privacy/pull/14))
+- Develop ([#7](https://github.com/figuren-theater/ft-privacy/pull/7))
+- Develop ([#4](https://github.com/figuren-theater/ft-privacy/pull/4))
+- Develop ([#3](https://github.com/figuren-theater/ft-privacy/pull/3))
+
+### Dependency Updates & Maintenance
+
+- Update composer.json to match (accientaly) installed version ([#27](https://github.com/figuren-theater/ft-privacy/pull/27))
+- Bump wpackagist-plugin/koko-analytics from 1.0.37 to 1.0.38 ([#13](https://github.com/figuren-theater/ft-privacy/pull/13))
+- Bump wpackagist-plugin/embed-privacy from 1.7.1 to 1.7.2 ([#12](https://github.com/figuren-theater/ft-privacy/pull/12))
+- Bump wpackagist-plugin/embed-privacy from 1.6.5 to 1.7.1 ([#6](https://github.com/figuren-theater/ft-privacy/pull/6))
