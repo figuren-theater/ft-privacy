@@ -9,7 +9,7 @@
  * Domain Path:     /languages
  * Version:         1.0.25
  *
- * @package         Figuren_Theater\Privacy
+ * @package         Figuren_Theater\ft-privacy
  */
 
 namespace Figuren_Theater\Privacy;

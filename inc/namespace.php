@@ -2,25 +2,28 @@
 /**
  * Figuren_Theater Privacy.
  *
- * @package figuren-theater/privacy
+ * @package figuren-theater/ft-privacy
  */
 
 namespace Figuren_Theater\Privacy;
 
 use Altis;
-use function Altis\register_module;
+
+const ASSETS_URL = '/FT/ft-privacy/assets/';
 
 /**
  * Register module.
+ *
+ * @return void
  */
-function register() {
+function register() :void {
 
 	$default_settings = [
-		'enabled'          => true, // needs to be set
-		'compressed-emoji' => false, // disabled for the planet
-		'koko-analytics'   => false, // disabled for the planet
+		'enabled'          => true,  // Needs to be set.
+		'compressed-emoji' => false, // Disabled for the planet.
+		'koko-analytics'   => false, // Disabled for the planet.
 	];
-	
+
 	$options = [
 		'defaults' => $default_settings,
 	];
@@ -36,15 +39,17 @@ function register() {
 
 /**
  * Bootstrap module, when enabled.
+ *
+ * @return void
  */
-function bootstrap() {
+function bootstrap() :void {
 
-	// Plugins
+	// Plugins.
 	Compressed_Emoji\bootstrap();
 	Embed_Privacy\bootstrap();
 	Koko_Analytics\bootstrap();
 	Surbma_GDPR_Multisite_Privacy\bootstrap();
 
-	// Best practices
+	// Best practices.
 	WPTT_WebFont_Loader\bootstrap();
 }
