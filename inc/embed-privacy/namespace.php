@@ -69,7 +69,7 @@ function load_plugin() :void {
 	add_filter( 'register_epi_embed_post_type_args', __NAMESPACE__ . '\\disable_export' );
 
 	// Load some additional styles.
-	add_action( 'after_setup_theme', __NAMESPACE__ . '\\enqueue_css_fix' );
+	add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\\enqueue_css_fix' );
 
 }
 
