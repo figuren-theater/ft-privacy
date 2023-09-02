@@ -39,7 +39,7 @@
         "wpackagist-plugin/surbma-gdpr-multisite-privacy": "^2"
     },
     "require-dev": {
-        "figuren-theater/code-quality": "^0.6.6"
+        "figuren-theater/code-quality": "*"
     },
     "suggest": {
         "figuren-theater/ft-onboarding": "Contains the mandatory filter, which will help to pseudo-activate the Embed-Privacy-Plugin, if available."
