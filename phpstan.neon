@@ -18,7 +18,5 @@ parameters:
             - tests/
     # @todo #26 Find a nicer way instead of ignoring this Error on every ft-module
     ignoreErrors:
-        - '#Constant WP_CONTENT_DIR not found\.#'
-        - '#Constant WPMU_PLUGIN_URL not found\.#'
         - '#Function Altis\\register_module not found\.#'
         - '#Function Figuren_Theater\\get_config not found\.#'
