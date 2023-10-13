@@ -2,7 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
-## [Unreleased](https://github.com/figuren-theater/ft-privacy/compare/1.2.2...HEAD)
+## [Unreleased](https://github.com/figuren-theater/ft-privacy/compare/1.2.3...HEAD)
+
+## [1.2.3](https://github.com/figuren-theater/ft-privacy/compare/1.2.2...1.2.3) - 2023-10-13
+
+- Upgrading figuren-theater/ft-options (1.1.11 => 1.2.3) ([#40](https://github.com/figuren-theater/ft-privacy/pull/40))
 
 ## [1.2.2](https://github.com/figuren-theater/ft-privacy/compare/1.2.1...1.2.2) - 2023-10-13
 
