@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d71e71a72038dcc830e3c4c216ce843c",
+    "content-hash": "c9aa1fff3af91541e66419714d701828",
     "packages": [
         {
             "name": "composer/installers",
@@ -334,15 +334,15 @@
         },
         {
             "name": "wpackagist-plugin/koko-analytics",
-            "version": "1.0.39",
+            "version": "1.3.2",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/koko-analytics/",
-                "reference": "tags/1.0.39"
+                "reference": "tags/1.3.2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/koko-analytics.1.0.39.zip"
+                "url": "https://downloads.wordpress.org/plugin/koko-analytics.1.3.2.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
@@ -1708,5 +1708,5 @@
         "php": ">=7.1"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.3.0"
+    "plugin-api-version": "2.6.0"
 }
