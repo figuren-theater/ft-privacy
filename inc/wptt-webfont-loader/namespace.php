@@ -17,7 +17,7 @@ use function is_user_admin;
  *
  * @return void
  */
-function bootstrap() :void {
+function bootstrap(): void {
 
 	add_action( 'plugins_loaded', __NAMESPACE__ . '\\load_plugin' );
 }
@@ -27,7 +27,7 @@ function bootstrap() :void {
  *
  * @return void
  */
-function load_plugin() :void {
+function load_plugin(): void {
 
 	// Do only load in "normal" admin view
 	// Not for:
@@ -37,7 +37,7 @@ function load_plugin() :void {
 		return;
 	}
 
-	add_filter( 'style_loader_tag', __NAMESPACE__ . '\\rereference_google_fonts', 10, 4 );
+	add_filter( 'style_loader_tag', __NAMESPACE__ . '\\rereference_google_fonts', 10, 3 );
 }
 
 /**
@@ -68,11 +68,10 @@ function get_webfont_url( $url, $format = 'woff2' ) {
  * @param string $tag    The HTML tag for the font stylesheet.
  * @param string $handle The script/style handle.
  * @param string $href   The original URL of the font stylesheet.
- * @param string $media  The media attribute of the font stylesheet.
  *
  * @return string The modified HTML tag for the font stylesheet.
  */
-function rereference_google_fonts( string $tag, string $handle, string $href, string $media ) :string {
+function rereference_google_fonts( string $tag, string $handle, string $href ): string {
 	if ( ! strpos( $href, 'google' ) && ! strpos( $href, 'fonts.gstatic' ) ) {
 		return $tag;
 	}
@@ -104,4 +103,3 @@ function rereference_google_fonts( string $tag, string $handle, string $href, st
 
 	return $tag;
 }
-

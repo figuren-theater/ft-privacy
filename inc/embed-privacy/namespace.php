@@ -10,12 +10,12 @@ namespace Figuren_Theater\Privacy\Embed_Privacy;
 use Figuren_Theater\Options;
 use Figuren_Theater\Privacy;
 use FT_VENDOR_DIR;
+use WPMU_PLUGIN_URL;
 
 use function add_action;
 use function add_filter;
 use function is_network_admin;
 use function remove_submenu_page;
-use WPMU_PLUGIN_URL;
 
 const BASENAME   = 'embed-privacy/embed-privacy.php';
 const PLUGINPATH = '/wpackagist-plugin/' . BASENAME;
@@ -25,7 +25,7 @@ const PLUGINPATH = '/wpackagist-plugin/' . BASENAME;
  *
  * @return void
  */
-function bootstrap() :void {
+function bootstrap(): void {
 
 	add_action( 'Figuren_Theater\loaded', __NAMESPACE__ . '\\filter_options', 11 );
 
@@ -37,14 +37,14 @@ function bootstrap() :void {
  *
  * @return void
  */
-function load_plugin() :void {
+function load_plugin(): void {
 
 	if ( is_network_admin() ) {
 		return;
 	}
 
 	if ( ! defined( 'EPI_EMBED_PRIVACY_BASE' ) ) {
-		define( 'EPI_EMBED_PRIVACY_BASE', FT_VENDOR_DIR . '/wpackagist-plugin/embed-privacy/' );
+		define( 'EPI_EMBED_PRIVACY_BASE', FT_VENDOR_DIR . '/wpackagist-plugin/embed-privacy/' ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedConstantFound
 	}
 
 	require_once FT_VENDOR_DIR . PLUGINPATH; // phpcs:ignore WordPressVIPMinimum.Files.IncludingFile.UsingCustomConstant
@@ -70,7 +70,6 @@ function load_plugin() :void {
 
 	// Load some additional styles.
 	add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\\enqueue_css_fix' );
-
 }
 
 /**
@@ -78,7 +77,7 @@ function load_plugin() :void {
  *
  * @return void
  */
-function filter_options() :void {
+function filter_options(): void {
 
 	$_options = [
 
@@ -146,7 +145,7 @@ function filter_options() :void {
  *
  * @return void
  */
-function remove_menu() :void {
+function remove_menu(): void {
 	remove_submenu_page( 'options-general.php', 'embed_privacy' );
 }
 
@@ -160,7 +159,7 @@ function remove_menu() :void {
  *
  * @return string[]
  */
-function defer_frontend_js( array $scripts_to_defer ) :array {
+function defer_frontend_js( array $scripts_to_defer ): array {
 
 	$scripts_to_defer[] = 'embed-privacy';
 
@@ -219,7 +218,7 @@ function activation() {
  *
  * @return array<string, mixed>
  */
-function disable_export( array $args ) :array {
+function disable_export( array $args ): array {
 	$args['can_export'] = false;
 	return $args;
 }
@@ -229,7 +228,7 @@ function disable_export( array $args ) :array {
  *
  * @return void
  */
-function enqueue_css_fix() :void {
+function enqueue_css_fix(): void {
 	// Same args used for wp_enqueue_style().
 	$args = [
 		'handle' => 'embed-privacy-fix',
@@ -245,7 +244,7 @@ function enqueue_css_fix() :void {
 		$args['handle'],
 		$args['src'],
 		$args['deps'],
-		null,
+		(string) filemtime( $args['path'] ),
 		'screen'
 	);
 }

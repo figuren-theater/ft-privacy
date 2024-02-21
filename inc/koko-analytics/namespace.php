@@ -9,19 +9,16 @@ namespace Figuren_Theater\Privacy\Koko_Analytics;
 
 use Figuren_Theater;
 use Figuren_Theater\Options;
-
 use FT_ROOT_DIR;
-
 use FT_VENDOR_DIR;
+use WP_Admin_Bar;
+use WP_CONTENT_DIR;
+use WP_Role;
 use function add_action;
-
 use function get_current_blog_id;
 use function get_role;
 use function is_network_admin;
 use function remove_all_actions;
-use WP_Admin_Bar;
-use WP_CONTENT_DIR;
-use WP_Role;
 
 const BASENAME   = 'koko-analytics/koko-analytics.php';
 const PLUGINPATH = '/wpackagist-plugin/' . BASENAME;
@@ -34,7 +31,7 @@ const CUSTOM_ENDPOINT = '/content/k.php';
  *
  * @return void
  */
-function bootstrap() :void {
+function bootstrap(): void {
 
 	bootstrap_custom_endpoint();
 
@@ -55,13 +52,13 @@ function bootstrap() :void {
  * @package Figuren_Theater\Privacy\Koko_Analytics
  * @since
  */
-function bootstrap_custom_endpoint() :void {
+function bootstrap_custom_endpoint(): void {
 
 	if ( file_exists( FT_ROOT_DIR . CUSTOM_ENDPOINT ) ) {
 
 		$cbid = get_current_blog_id();
-		define( 'KOKO_ANALYTICS_CUSTOM_ENDPOINT', CUSTOM_ENDPOINT . '?c=' . $cbid );
-		define( 'KOKO_ANALYTICS_BUFFER_FILE', WP_CONTENT_DIR . '/uploads/sites/' . $cbid . '/pageviews.php' );
+		define( 'KOKO_ANALYTICS_CUSTOM_ENDPOINT', CUSTOM_ENDPOINT . '?c=' . $cbid ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedConstantFound
+		define( 'KOKO_ANALYTICS_BUFFER_FILE', WP_CONTENT_DIR . '/uploads/sites/' . $cbid . '/pageviews.php' ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedConstantFound
 	}
 }
 
@@ -70,7 +67,7 @@ function bootstrap_custom_endpoint() :void {
  *
  * @return void
  */
-function load_plugin() :void {
+function load_plugin(): void {
 
 	if ( is_network_admin() ) {
 		return;
@@ -97,7 +94,7 @@ function load_plugin() :void {
  *
  * @return void
  */
-function filter_options() :void {
+function filter_options(): void {
 
 	$_options = [
 		'use_cookie'              => 0,
@@ -112,7 +109,7 @@ function filter_options() :void {
 		'default_view'            => 'last_28_days',
 	];
 
-	$koko_analytics_settings = new Options\Option(
+	$koko_analytics_settings              = new Options\Option(
 		'koko_analytics_settings',
 		$_options,
 		BASENAME
@@ -130,7 +127,7 @@ function filter_options() :void {
  *
  * @return void
  */
-function change_menu_title() : void {
+function change_menu_title(): void {
 
 	global $submenu;
 
@@ -149,7 +146,7 @@ function change_menu_title() : void {
  *
  * @return void
  */
-function change_meta_box_title() : void {
+function change_meta_box_title(): void {
 
 	global $wp_meta_boxes;
 
@@ -169,13 +166,13 @@ function change_meta_box_title() : void {
  *
  * @return void
  */
-function cleanup_admin_ui() : void {
+function cleanup_admin_ui(): void {
 
 	update_needed_roles();
 
 	add_action(
 		'admin_footer_text',
-		function() {
+		function () {
 			// This first try-out doesn't work
 			// $_koko = new KokoAnalytics\Admin;
 			// \remove_action( 'admin_footer_text', array( $_koko, 'footer_text' ) );
@@ -202,7 +199,7 @@ function cleanup_admin_ui() : void {
  *
  * @return void
  */
-function update_needed_roles() :void {
+function update_needed_roles(): void {
 
 	$editor        = get_role( 'editor' );
 	$administrator = get_role( 'administrator' );
@@ -223,7 +220,7 @@ function update_needed_roles() :void {
  *
  * @return void
  */
-function remove_from_admin_bar( WP_Admin_Bar $wp_admin_bar ) :void {
+function remove_from_admin_bar( WP_Admin_Bar $wp_admin_bar ): void {
 	$koko = $wp_admin_bar->get_node( 'koko-analytics' );
 
 	if ( \is_object( $koko ) && \property_exists( $koko, 'title' ) ) {

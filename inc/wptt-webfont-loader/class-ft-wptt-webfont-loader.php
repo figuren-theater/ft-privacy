@@ -7,7 +7,7 @@
 
 namespace Figuren_Theater\Privacy\WPTT_WebFont_Loader;
 
-use WPTT_WebFont_Loader as Original;
+use WPTT_WebFont_Loader;
 
 /**
  * Download webfonts locally.
@@ -15,7 +15,7 @@ use WPTT_WebFont_Loader as Original;
  * This modified 'webfont-loader' class disables the croned deletion
  * of the fonts folder to prevent unintended font deletion.
  */
-class FT_WPTT_WebFont_Loader extends Original {
+class FT_WPTT_WebFont_Loader extends WPTT_WebFont_Loader {
 
 	/**
 	 * Constructor.
@@ -35,5 +35,4 @@ class FT_WPTT_WebFont_Loader extends Original {
 		// $this->schedule_cleanup();
 		// add_action( 'delete_fonts_folder', array( $this, 'delete_fonts_folder' ) ); // !
 	}
-
 }
