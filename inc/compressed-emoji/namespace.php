@@ -20,7 +20,7 @@ const PLUGINPATH = '/wpackagist-plugin/' . BASENAME;
  *
  * @return void
  */
-function bootstrap() :void {
+function bootstrap(): void {
 
 	add_action( 'plugins_loaded', __NAMESPACE__ . '\\load_plugin' );
 }
@@ -30,7 +30,7 @@ function bootstrap() :void {
  *
  * @return void
  */
-function load_plugin() :void {
+function load_plugin(): void {
 
 	$config = Figuren_Theater\get_config()['modules']['privacy'];
 	if ( ! $config['compressed-emoji'] ) {

@@ -16,7 +16,7 @@ const ASSETS_URL = '/FT/ft-privacy/assets/';
  *
  * @return void
  */
-function register() :void {
+function register(): void {
 
 	$default_settings = [
 		'enabled'          => true,  // Needs to be set.
@@ -42,7 +42,7 @@ function register() :void {
  *
  * @return void
  */
-function bootstrap() :void {
+function bootstrap(): void {
 
 	// Plugins.
 	Compressed_Emoji\bootstrap();
