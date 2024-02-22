@@ -2,7 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
-## [Unreleased](https://github.com/figuren-theater/ft-privacy/compare/1.2.4...HEAD)
+## [Unreleased](https://github.com/figuren-theater/ft-privacy/compare/1.3.0...HEAD)
+
+## [1.3.0](https://github.com/figuren-theater/ft-privacy/compare/1.2.4...1.3.0) - 2024-02-22
+
+### Dependency Updates & Maintenance
+
+- Upgrading wpackagist-plugin/koko-analytics (1.0.39 => 1.3.6) ([#49](https://github.com/figuren-theater/ft-privacy/pull/49))
 
 ## [1.2.4](https://github.com/figuren-theater/ft-privacy/compare/1.2.3...1.2.4) - 2024-02-21
 
