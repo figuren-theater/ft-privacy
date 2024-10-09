@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "99d125659d834acce653490b27324195",
+    "content-hash": "1f418c1da7b8f3141ea8c49008e312d1",
     "packages": [
         {
             "name": "composer/installers",
@@ -299,15 +299,15 @@
         },
         {
             "name": "wpackagist-plugin/compressed-emoji",
-            "version": "1.5",
+            "version": "1.6",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/compressed-emoji/",
-                "reference": "tags/1.5"
+                "reference": "tags/1.6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/compressed-emoji.1.5.zip"
+                "url": "https://downloads.wordpress.org/plugin/compressed-emoji.1.6.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
