@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3220f33728288bbbd0c645a80cdaf9ac",
+    "content-hash": "99d125659d834acce653490b27324195",
     "packages": [
         {
             "name": "composer/installers",
@@ -317,15 +317,15 @@
         },
         {
             "name": "wpackagist-plugin/embed-privacy",
-            "version": "1.8.1",
+            "version": "1.10.6",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/embed-privacy/",
-                "reference": "tags/1.8.1"
+                "reference": "tags/1.10.6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/embed-privacy.1.8.1.zip"
+                "url": "https://downloads.wordpress.org/plugin/embed-privacy.1.10.6.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
