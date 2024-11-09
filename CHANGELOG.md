@@ -2,7 +2,18 @@
 
 All notable changes to this project will be documented in this file.
 
-## [Unreleased](https://github.com/figuren-theater/ft-privacy/compare/1.4.0...HEAD)
+## [Unreleased](https://github.com/figuren-theater/ft-privacy/compare/1.5.0...HEAD)
+
+## [1.5.0](https://github.com/figuren-theater/ft-privacy/compare/1.4.0...1.5.0) - 2024-11-09
+
+### 🐛 Fixed
+
+- Fix "filemtime(): stat failed for ..." error with corrected file path ([#61](https://github.com/figuren-theater/ft-privacy/pull/61))
+
+### Dependency Updates & Maintenance
+
+- Bump wpackagist-plugin/koko-analytics from 1.4.2 to 1.4.4 ([#62](https://github.com/figuren-theater/ft-privacy/pull/62))
+- Bump wpackagist-plugin/koko-analytics from 1.3.15 to 1.4.2 ([#59](https://github.com/figuren-theater/ft-privacy/pull/59))
 
 ## [1.4.0](https://github.com/figuren-theater/ft-privacy/compare/1.3.0...1.4.0) - 2024-10-25
 
