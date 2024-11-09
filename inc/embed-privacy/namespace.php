@@ -237,7 +237,7 @@ function enqueue_css_fix(): void {
 	];
 
 	// Add "path" to allow inlining asset if the theme opts-in.
-	$args['path'] = Privacy\DIRECTORY . 'assets/embed-privacy/fix.css';
+	$args['path'] = Privacy\DIRECTORY . '/assets/embed-privacy/fix.css';
 
 	// Enqueue asset.
 	wp_enqueue_style(
