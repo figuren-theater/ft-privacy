@@ -35,7 +35,7 @@
         "koodimonni/composer-dropin-installer": "1.4",
         "wpackagist-plugin/compressed-emoji": "1.6",
         "wpackagist-plugin/embed-privacy": "1.10.6",
-        "wpackagist-plugin/koko-analytics": "1.4.2",
+        "wpackagist-plugin/koko-analytics": "1.4.4",
         "wpackagist-plugin/surbma-gdpr-multisite-privacy": "2.0"
     },
     "require-dev": {
