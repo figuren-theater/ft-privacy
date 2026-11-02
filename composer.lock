@@ -154,18 +154,18 @@
         },
         {
             "name": "figuren-theater/ft-options",
-            "version": "1.2.5",
+            "version": "1.2.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/figuren-theater/ft-options",
-                "reference": "19baf021113cdfd91facdd9750820ac22f631330"
+                "reference": "cc7204bab5ca4e5a829f156d7631cf52a88f123f"
             },
             "require": {
                 "markjaquith/wp-tlc-transients": "^1.0",
                 "php": ">=7.4"
             },
             "require-dev": {
-                "figuren-theater/code-quality": "^1.1"
+                "figuren-theater/code-quality": "^2.0"
             },
             "type": "wordpress-muplugin",
             "autoload": {
@@ -201,7 +201,7 @@
                 "issues": "https://github.com/figuren-theater/ft-options/issues",
                 "source": "https://github.com/figuren-theater/ft-options"
             },
-            "time": "2024-02-24T14:02:32+00:00"
+            "time": "2025-12-11T11:53:55+00:00"
         },
         {
             "name": "koodimonni/composer-dropin-installer",
@@ -2160,12 +2160,12 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {},
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
         "php": ">=7.1"
     },
-    "platform-dev": [],
-    "plugin-api-version": "2.6.0"
+    "platform-dev": {},
+    "plugin-api-version": "2.9.0"
 }
